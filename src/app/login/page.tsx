@@ -19,7 +19,7 @@ export default function LoginPage() {
             href="/"
             className="font-display font-bold text-2xl text-foreground hover:text-accent transition-colors"
           >
-            <span className="text-accent">A</span>lex Chen
+            <span className="text-orange">TECH</span>CABZ
           </a>
           <p className="text-muted text-sm mt-2">Admin dashboard</p>
         </div>
