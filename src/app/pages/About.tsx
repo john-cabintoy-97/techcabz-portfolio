@@ -23,7 +23,7 @@ function buildStats(experiences: Experience[], projectCount: number) {
   const currentRole = experiences.find((entry) => entry.is_current);
 
   return [
-    { value: getYearsOfExperience(experiences), label: 'Years Experience' },
+    { value: '3', label: 'Years Experience' },
     { value: String(projectCount), label: 'Projects Shipped' },
   ];
 }
