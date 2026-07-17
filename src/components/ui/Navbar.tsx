@@ -52,7 +52,7 @@ export function Navbar() {
           </button>
           
           <Link href={CONTACT_INFO.resume} className="hidden sm:block bg-[#F97316] text-white text-sm px-4 py-2 rounded-md hover:bg-[#f97316]/90 transition-all">
-           View CV
+           Download Resume
           </Link>
 
           <button className="md:hidden p-2 text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>

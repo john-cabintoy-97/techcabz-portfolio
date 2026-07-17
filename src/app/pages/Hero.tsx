@@ -49,7 +49,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="btn-primary bg-[#F97316] hover:bg-[#f97316]/90"
             >
-              View CV
+              Download Resume
             </a>
 
             {/* Priority 2: Direct to Contact Section */}
