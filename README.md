@@ -13,6 +13,3 @@ A modern, full-stack developer portfolio and project management platform featuri
 - **Skeleton loaders** — Performance-optimized loading states (`loading.tsx`) with shimmer skeletons across pages.
 - **Dark mode aesthetic** — Sleek violet-accented dark theme tailored for modern developer portfolios.
 
----
-
-## 🗂 File Structure
