@@ -6,18 +6,21 @@ import type { Project } from '@/types/database';
 
 interface ProjectCardProps {
   project: Project;
+  index?: number; // Optional: use to prioritize only the first few cards if needed
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  // Only give priority to the first 2 items (e.g., above the fold), lazy load the rest
+  const isPriority = index < 2;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      layout
-      className="card group block h-full overflow-hidden rounded-xl border border-border bg-surface shadow-sm"
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      // Removed 'layout' prop to prevent heavy layout shifts and thread-blocking
+      className="card group block h-full overflow-hidden rounded-xl border border-border bg-surface shadow-sm will-change-transform"
     >
       <Link href={`/projects/${project.id}`}>
         <div className="relative aspect-video bg-surface-2 overflow-hidden">
@@ -26,6 +29,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
               src={project.image_url}
               alt={project.title}
               fill
+              // Dynamically prioritize only the first couple of cards, lazy load the rest
+              priority={isPriority}
+              loading={isPriority ? "eager" : "lazy"}
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
@@ -37,7 +43,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           )}
           {project.featured && (
-            <span className="absolute top-3 right-3 text-xs font-display font-semibold px-2 py-1 rounded-full bg-accent/90 text-white backdrop-blur-sm">
+            <span className="absolute top-3 right-3 text-xs font-display font-semibold px-2 py-1 rounded-full bg-accent/90 text-white backdrop-blur-sm z-10">
               Featured
             </span>
           )}
