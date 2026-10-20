@@ -5,7 +5,13 @@ import { CustomCursor } from '@/components/ui/CustomCursor';
 import { ThemeProvider } from '@/components/themes/theme-provider';
 import { AppParticlesProvider } from '@/components/public/AppParticlesProvider';
 import { Plus_Jakarta_Sans } from 'next/font/google';
-const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] });
+
+const jakarta = Plus_Jakarta_Sans({ 
+  subsets: ['latin'],
+  display: 'swap', // Prevents text-blocking while font loads
+  preload: true,
+});
+
 export const metadata: Metadata = {
   title: {
     default: 'John Rey Cabintoy — Full-Stack Developer',
@@ -16,6 +22,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  // Add other metadata options if needed
   openGraph: {
     title: 'John Rey Cabintoy — Full-Stack Developer',
     description:
@@ -31,6 +38,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={jakarta.className} suppressHydrationWarning>
+      <head>
+        {/* Preconnect to Supabase / Storage CDN to speed up image fetching */}
+        <link rel="preconnect" href="https://orkidtghafeoewphmqlb.supabase.co" />
+        <link rel="dns-prefetch" href="https://orkidtghafeoewphmqlb.supabase.co" />
+      </head>
       <body>
         <AppParticlesProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
